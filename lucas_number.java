@@ -1,6 +1,7 @@
 import java.util.Scanner;
-//current ideas: validation
-//trivia fact, Lucas is known also for the Fibonacci Sequence
+//current ideas: order of growth approaches golden ratio. rest are fibonacci seq i thiunk
+//TODO: implement custom sequence (artem_num) and add an arg for it using args[]. potentially remove the calcs from main to reduce code bloat in main to allow me to use any number of custom sequences.
+//trivia fact, Lucas is known also for the Fibonacci Sequence and the tower of hanoi
 public class lucas_number{
     
     public static int lucas_num (int n){
@@ -15,7 +16,18 @@ public class lucas_number{
         }
     }
 
-    public static void calc_lucas_number(int n){}
+    public static int artem_num (int n){
+        if ( n == 0){
+            return 1;
+        }
+        else if (n == 1) {
+            return 19;
+        }
+        else {
+            return artem_num(n-2) - artem_num(n-1); //A(n) = A(n-2) - A(n-1) for n > 1 
+        }
+    }
+
 
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
@@ -34,7 +46,7 @@ public class lucas_number{
             long end = System.nanoTime();
             long time_took = end -start;
 
-            System.out.println("L(" + i + ") = " + lucas_val + ", Time Taken: " + time_took + " nanoseconds");
+            System.out.println("L(" + i + ") = " + lucas_val + ", Time Taken: " + time_took + " ns");
 
             if (i > 0){
                 double value_ratio = (double) lucas_val / last_val;
