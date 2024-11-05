@@ -1,4 +1,3 @@
-import java.util.Scanner;
 //current ideas: order of growth approaches golden ratio. rest are fibonacci seq i thiunk
 //TODO: implement custom sequence (artem_num) and add an arg for it using args[]. potentially remove the calcs from main to reduce code bloat in main to allow me to use any number of custom sequences.
 //trivia fact, Lucas is known also for the Fibonacci Sequence and the tower of hanoi
@@ -31,23 +30,24 @@ public class lucas_number{
 
     public static void main(String[] args){
         if (args.length < 2){
-            System.out.println("Mistmatched entry. Usage: java.lucas_number <seq_type> <n> ")
-            System.out.println("<seq_type> can be either 'artem' or 'lucas'")
+            System.out.println("Mistmatched entry. Usage: java.lucas_number <seq_type> <n> ");
+            System.out.println("<seq_type> can be either 'artem' or 'lucas'");
             return;
         }
 
-        string seqType = args[0].toLowerCase();
-        int n = Integer.parseInt(args[1])
+        String seqType = args[0].toLowerCase();
+        int n = Integer.parseInt(args[1]);
 
         System.out.println("Calcing " + seqType + " seq up to" + seqType + "( " + n + ")\n" );
-        System.out.println("%-5s %-15s %20s %-15s %10s%n", "Index", "Number", "Time Taken (ns)", "Value Ratio", "Time Ratio");
+        System.out.printf("%-5s %-15s %20s %-15s %10s%n", "Index", "Number", "Time Taken (ns)", "Value Ratio", "Time Ratio");
     
 
-        long last_time = 0;
-        int last_val = 0;
+        long lastTime = 0;
+        int lastValue = 0;
 
         for (int i = 0; i <= n; i++){
-            int value = (sequenceType.equals("lucas")) ? lucas_num(i) : artem_num(i);
+            long startTime = System.nanoTime();
+            int value = (seqType.equals("lucas")) ? lucas_num(i) : artem_num(i);
             long endTime = System.nanoTime();
             long timeTaken = endTime - startTime;
 
