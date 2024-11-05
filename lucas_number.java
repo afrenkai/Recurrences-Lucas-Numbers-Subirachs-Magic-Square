@@ -30,36 +30,34 @@ public class lucas_number{
 
 
     public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
+        if (args.length < 2){
+            System.out.println("Mistmatched entry. Usage: java.lucas_number <seq_type> <n> ")
+            System.out.println("<seq_type> can be either 'artem' or 'lucas'")
+            return;
+        }
 
-        System.out.println("Please enter n for the lucas numbers: ");
-        int n = scanner.nextInt();
+        string seqType = args[0].toLowerCase();
+        int n = Integer.parseInt(args[1])
 
-        System.out.println("Calculating Lucas Sequence up to L of " + n + "\n");
+        System.out.println("Calcing " + seqType + " seq up to" + seqType + "( " + n + ")\n" );
+        System.out.println("%-5s %-15s %20s %-15s %10s%n", "Index", "Number", "Time Taken (ns)", "Value Ratio", "Time Ratio");
+    
 
         long last_time = 0;
         int last_val = 0;
 
         for (int i = 0; i <= n; i++){
-            long start = System.nanoTime();
-            int lucas_val = lucas_num(i);
-            long end = System.nanoTime();
-            long time_took = end -start;
+            int value = (sequenceType.equals("lucas")) ? lucas_num(i) : artem_num(i);
+            long endTime = System.nanoTime();
+            long timeTaken = endTime - startTime;
 
-            System.out.println("L(" + i + ") = " + lucas_val + ", Time Taken: " + time_took + " ns");
+            double valueRatio = (i > 0) ? (double) value / lastValue : 0;
+            double timeRatio = (i > 0) ? (double) timeTaken / lastTime : 0;
 
-            if (i > 0){
-                double value_ratio = (double) lucas_val / last_val;
-                double time_ratio = (double) time_took / last_time;
+            System.out.printf("%-5d %-15s %-20d %-15.4f %-10.4f%n", i, seqType + "(" + i + ")", timeTaken, valueRatio, timeRatio);
 
-                System.out.println("L(" + i + ")/L(" + (i - 1) + ") = " + value_ratio);
-                System.out.println("Time(L(" + i + ")) / Time(L(" + (i - 1) + ")) = " + time_ratio);
-            }
-
-            last_time = time_took;
-            last_val = lucas_val;
+            lastTime = timeTaken;
+            lastValue = value;
         }
-        
-        scanner.close();
     }
 }
