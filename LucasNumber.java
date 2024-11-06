@@ -1,7 +1,6 @@
 //current ideas: order of growth approaches golden ratio. rest are fibonacci seq i thiunk
-//TODO: implement custom sequence (artem_num) and add an arg for it using args[]. potentially remove the calcs from main to reduce code bloat in main to allow me to use any number of custom sequences.
 //trivia fact, Lucas is known also for the Fibonacci Sequence and the tower of hanoi
-public class lucas_number{
+public class LucasNumber{
     
     public static int lucas_num (int n){
         if (n == 0){
